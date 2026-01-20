@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book an appointment with Student Academy Portal - Schedule a consultation with our team.">
+  <title>Book Appointment - Student Academy Portal</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">🎓</span>
+        <span class="brand-text">Student Academy Portal</span>
+      </a>
+
+      <button class="menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="courses.html" class="nav-link">Courses</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="book_appointment.html" class="nav-link active">Appointments</a></li>
+        
+        <li class="nav-divider"></li>
+
+        <li><a href="/student/login.php" class="nav-link student-login">Student Login</a></li>
+        <li><a href="/admin/login.php" class="nav-link admin-login">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="page-header">
+      <h1>Book an Appointment</h1>
+      <p>Schedule a consultation with our academic advisors</p>
+    </section>
+
+    <section class="section appointment-section">
+      <div class="appointment-container">
+        <div class="appointment-form-wrapper">
+          <h2>Schedule Your Consultation</h2>
+          <p class="form-intro">Fill out the form below and we'll confirm your appointment within 24 hours.</p>
+
+          <form id="appointmentForm" class="appointment-form" action="book_appointment.php" method="POST">
+            <div class="form-group">
+              <label for="app-name">Full Name *</label>
+              <input 
+                type="text" 
+                id="app-name" 
+                name="name" 
+                required 
+                minlength="2"
+                maxlength="100"
+                placeholder="Enter your full name"
+              >
+              <small class="form-hint">2 to 100 characters</small>
+            </div>
+
+            <div class="form-group">
+              <label for="app-email">Email Address *</label>
+              <input 
+                type="email" 
+                id="app-email" 
+                name="email" 
+                required 
+                placeholder="your@email.com"
+              >
+              <small class="form-hint">We'll send confirmation to this email</small>
+            </div>
+
+            <div class="form-group">
+              <label for="app-phone">Phone Number</label>
+              <input 
+                type="tel" 
+                id="app-phone" 
+                name="phone" 
+                placeholder="(123) 456-7890"
+                pattern="[\d\s\-\+\(\)]{0,20}"
+              >
+              <small class="form-hint">Optional - helps us reach you faster</small>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="app-date">Preferred Date *</label>
+                <input 
+                  type="date" 
+                  id="app-date" 
+                  name="preferred_date" 
+                  required
+                >
+                <small class="form-hint">Select a date (next 30 days)</small>
+              </div>
+
+              <div class="form-group">
+                <label for="app-time">Preferred Time *</label>
+                <input 
+                  type="time" 
+                  id="app-time" 
+                  name="preferred_time" 
+                  required
+                >
+                <small class="form-hint">9:00 AM - 5:00 PM</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="app-reason">Reason for Appointment *</label>
+              <textarea 
+                id="app-reason" 
+                name="reason" 
+                required 
+                minlength="5"
+                maxlength="500"
+                rows="4"
+                placeholder="What would you like to discuss? (e.g., course selection, career guidance, enrollment process)"
+              ></textarea>
+              <small class="form-hint">5 to 500 characters</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large">Book Appointment</button>
+          </form>
+        </div>
+
+        <aside class="appointment-benefits">
+          <h3>Benefits of Booking</h3>
+          <ul class="benefits-list">
+            <li>✓ Personalized course recommendations</li>
+            <li>✓ Direct guidance from academic advisors</li>
+            <li>✓ Discuss scholarships and payment plans</li>
+            <li>✓ Get career advice from industry experts</li>
+            <li>✓ Clear roadmap for your learning journey</li>
+            <li>✓ One-on-one mentoring options</li>
+          </ul>
+
+          <div class="appointment-note">
+            <h4>📝 Note</h4>
+            <p>All appointments are conducted via video call or phone. You'll receive a confirmation email with the meeting link and details.</p>
+          </div>
+
+          <div class="appointment-hours">
+            <h4>Available Hours</h4>
+            <p>
+              <strong>Monday - Friday:</strong> 9:00 AM - 5:00 PM<br>
+              <strong>Saturday:</strong> 10:00 AM - 2:00 PM<br>
+              <em>All times in your local timezone</em>
+            </p>
+          </div>
+
+          <div class="quick-contact">
+            <h4>Quick Contact</h4>
+            <p>
+              Prefer to call?<br>
+              <a href="tel:+1234567890" class="contact-link">(123) 456-7890</a>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section faq-section">
+      <h2>Appointment FAQs</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>What happens during the appointment?</h4>
+          <p>We'll discuss your goals, review course options, answer questions, and create a personalized learning plan for you.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How long is an appointment?</h4>
+          <p>Most appointments are 30-45 minutes. We'll adjust based on your needs and questions.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I reschedule my appointment?</h4>
+          <p>Yes! You'll receive a confirmation email with options to reschedule up to 24 hours before your appointment.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Will I need to prepare anything?</h4>
+          <p>No preparation needed! Just be ready to discuss your career goals and any specific questions you have.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-final">
+      <div class="cta-box">
+        <h2>Ready to Take the Next Step?</h2>
+        <p>Book your appointment today and start your journey to success.</p>
+        <a href="#appointmentForm" class="btn btn-primary btn-large">Schedule Now</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Portal</h4>
+        <ul class="footer-links">
+          <li><a href="/student/login.php">Student Login</a></li>
+          <li><a href="/student/register.php">Student Register</a></li>
+          <li><a href="/admin/login.php">Admin Login</a></li>
+          <li><a href="book_appointment.html">Book Appointment</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Information</h4>
+        <p class="footer-contact">
+          <strong>Email:</strong> <a href="mailto:contact@studentacademy.local">contact@studentacademy.local</a><br>
+          <strong>Phone:</strong> <a href="tel:+1234567890">(123) 456-7890</a>
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook" class="social-link">f</a>
+          <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+          <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Student Academy Portal. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

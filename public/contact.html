@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Student Academy Portal - Reach out with questions or send us an enquiry.">
+  <title>Contact Us - Student Academy Portal</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">🎓</span>
+        <span class="brand-text">Student Academy Portal</span>
+      </a>
+
+      <button class="menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="courses.html" class="nav-link">Courses</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        <li><a href="book_appointment.html" class="nav-link">Appointments</a></li>
+        
+        <li class="nav-divider"></li>
+
+        <li><a href="/student/login.php" class="nav-link student-login">Student Login</a></li>
+        <li><a href="/admin/login.php" class="nav-link admin-login">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="page-header">
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you. Get in touch with any questions.</p>
+    </section>
+
+    <section class="section contact-section">
+      <div class="contact-container">
+        <div class="contact-form-wrapper">
+          <h2>Send us a Message</h2>
+          <form id="contactForm" class="contact-form" action="contact.php" method="POST">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required 
+                minlength="2"
+                maxlength="100"
+                placeholder="Enter your full name"
+              >
+              <small class="form-hint">2 to 100 characters</small>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="your@email.com"
+              >
+              <small class="form-hint">We'll use this to reply to you</small>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                placeholder="(123) 456-7890"
+                pattern="[\d\s\-\+\(\)]{0,20}"
+              >
+              <small class="form-hint">Optional - helps us reach you faster</small>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                required 
+                minlength="5"
+                maxlength="1000"
+                rows="6"
+                placeholder="Tell us about your inquiry..."
+              ></textarea>
+              <small class="form-hint">5 to 1000 characters</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+          </form>
+        </div>
+
+        <aside class="contact-info-sidebar">
+          <h3>Get in Touch</h3>
+          
+          <div class="info-box">
+            <h4>📧 Email</h4>
+            <p>
+              <a href="mailto:contact@studentacademy.local">contact@studentacademy.local</a><br>
+              <a href="mailto:support@studentacademy.local">support@studentacademy.local</a>
+            </p>
+          </div>
+
+          <div class="info-box">
+            <h4>📞 Phone</h4>
+            <p>
+              <a href="tel:+1234567890">(123) 456-7890</a><br>
+              Mon - Fri, 9:00 AM - 5:00 PM
+            </p>
+          </div>
+
+          <div class="info-box">
+            <h4>📍 Location</h4>
+            <p>
+              123 Academy Street<br>
+              Tech City, TC 12345<br>
+              United States
+            </p>
+          </div>
+
+          <div class="info-box">
+            <h4>⏰ Business Hours</h4>
+            <p>
+              <strong>Monday - Friday:</strong> 9:00 AM - 5:00 PM<br>
+              <strong>Saturday:</strong> 10:00 AM - 3:00 PM<br>
+              <strong>Sunday:</strong> Closed
+            </p>
+          </div>
+
+          <div class="info-box social">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook">Facebook</a>
+              <a href="#" aria-label="Twitter">Twitter</a>
+              <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>How quickly will you respond?</h4>
+          <p>We aim to respond to all inquiries within 24 business hours. For urgent matters, please call us directly.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I schedule a call?</h4>
+          <p>Yes! Use our <a href="book_appointment.html">appointment booking system</a> to schedule a call with our team.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What if I have a billing question?</h4>
+          <p>Please email billing@studentacademy.local with your account details and inquiry for priority support.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you offer technical support?</h4>
+          <p>Yes! Our support team is available for all enrolled students. Login to your dashboard for support tickets.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Portal</h4>
+        <ul class="footer-links">
+          <li><a href="/student/login.php">Student Login</a></li>
+          <li><a href="/student/register.php">Student Register</a></li>
+          <li><a href="/admin/login.php">Admin Login</a></li>
+          <li><a href="book_appointment.html">Book Appointment</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Information</h4>
+        <p class="footer-contact">
+          <strong>Email:</strong> <a href="mailto:contact@studentacademy.local">contact@studentacademy.local</a><br>
+          <strong>Phone:</strong> <a href="tel:+1234567890">(123) 456-7890</a>
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook" class="social-link">f</a>
+          <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+          <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Student Academy Portal. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

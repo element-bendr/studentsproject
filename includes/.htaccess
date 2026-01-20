@@ -1,0 +1,2 @@
+# Deny direct access to includes folder
+Deny from all
