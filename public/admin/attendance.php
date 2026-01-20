@@ -1,10 +1,8 @@
 <?php
-require_once __DIR__ . '/../includes/header.php';
-require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/admin_header.php';
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/csrf.php';
 require_once __DIR__ . '/../includes/validation.php';
-require_admin_auth();
 
 $errors = [];
 $success = null;
@@ -139,5 +137,14 @@ try {
     </tbody>
   </table>
 </section>
+
+</main>
+
+<script>
+  document.querySelector('.page-title').textContent = 'Attendance Manager';
+  document.getElementById('menuToggle').addEventListener('click', function() {
+    document.querySelector('.sidebar-nav').classList.toggle('active');
+  });
+</script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

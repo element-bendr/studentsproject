@@ -1,8 +1,6 @@
 <?php
-require_once __DIR__ . '/../includes/header.php';
-require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/admin_header.php';
 require_once __DIR__ . '/../includes/db.php';
-require_admin_auth();
 
 $filterEmail = isset($_GET['email']) ? trim($_GET['email']) : '';
 $rows = [];
