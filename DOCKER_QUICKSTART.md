@@ -6,6 +6,44 @@
 
 ## ⚡ Fastest Way to Run (3 Steps)
 
+### Prerequisites: Install Docker Desktop
+
+Before running the application, you must install **Docker Desktop** for your OS:
+
+#### **Windows**
+1. Download: https://www.docker.com/products/docker-desktop
+2. **Requirements:**
+   - Windows 10 Pro/Enterprise/Education (or Windows 11)
+   - 4GB RAM minimum (8GB recommended)
+   - Hyper-V or WSL 2 enabled
+
+3. **After Installation:**
+   - Open Docker Desktop application
+   - Wait for the whale icon to appear in system tray (bottom-right)
+   - It should say "Docker is running"
+
+4. **Verify Installation:**
+   ```bash
+   docker --version
+   docker-compose --version
+   ```
+
+#### **macOS**
+1. Download: https://www.docker.com/products/docker-desktop
+2. Install and launch Docker Desktop
+3. Check system tray (top-right) for whale icon
+
+#### **Linux**
+```bash
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install docker.io docker-compose
+sudo systemctl start docker
+docker --version
+```
+
+---
+
 ### Step 1: Clone the Repository
 
 ```bash
@@ -156,6 +194,105 @@ docker-compose ps
 ---
 
 ## 🐛 Troubleshooting
+
+### ⚠️ WINDOWS USERS: Docker Desktop Not Running
+
+**Error Message:**
+```
+unable to get image 'studentsproject-web': error during connect: 
+Get "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine": 
+open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified
+```
+
+**Solution:**
+1. **Open Docker Desktop Application**
+   - Look for Docker icon in Start Menu
+   - Or search "Docker Desktop"
+   - Click to launch
+   - Wait 30-60 seconds for startup
+
+2. **Verify Docker is Running:**
+   - Look at system tray (bottom-right corner)
+   - Should see whale icon
+   - Hover over it - should say "Docker is running"
+
+3. **Test Docker Command:**
+   ```bash
+   docker --version
+   ```
+   - Should show version number (e.g., "Docker version 24.0.0")
+   - If it doesn't work, Docker Desktop is not running
+
+4. **Then Try Again:**
+   ```bash
+   docker-compose up --build
+   ```
+
+### Windows: Docker Desktop Not Installed
+
+**Error:** `'docker' is not recognized as an internal or external command`
+
+**Solution:**
+1. Download Docker Desktop: https://www.docker.com/products/docker-desktop
+2. Run the installer (.exe file)
+3. Follow the installation wizard
+4. **Restart your computer** when prompted
+5. Open Docker Desktop from Start Menu
+6. Wait for whale icon to appear in system tray
+7. Try again: `docker-compose up --build`
+
+### Windows: Hyper-V or WSL 2 Not Enabled
+
+**Error:** `Docker Desktop requires Hyper-V or WSL 2 to be enabled`
+
+**Solution (Enable WSL 2 - Recommended):**
+
+1. Open PowerShell **as Administrator**
+2. Run these commands:
+   ```powershell
+   wsl --install
+   wsl --set-default-version 2
+   ```
+3. Restart your computer
+4. Open Docker Desktop again
+
+**Solution (Enable Hyper-V - Alternative):**
+
+1. Press `Windows Key + R`
+2. Type: `optionalfeatures.exe`
+3. Check ✓ "Hyper-V"
+4. Click OK and restart
+
+### Windows: Port 8080 Already in Use
+
+**Error:** `bind: address already in use`
+
+**Solution:**
+1. Find what's using port 8080:
+   ```bash
+   netstat -ano | findstr :8080
+   ```
+2. Either:
+   - **Stop the other application**, OR
+   - **Change Docker port** in `docker-compose.yml`:
+     ```yaml
+     ports:
+       - "8081:80"  # Changed from 8080 to 8081
+     ```
+   Then access: http://localhost:8081
+
+### Windows: Cannot Delete Docker Container
+
+**Error:** `Error response from daemon: You cannot remove a running container`
+
+**Solution:**
+```bash
+# Stop the container first
+docker-compose down
+
+# Then start fresh
+docker-compose up --build
+```
 
 ### Issue: Port 8080 Already in Use
 
