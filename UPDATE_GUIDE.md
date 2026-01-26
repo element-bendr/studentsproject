@@ -9,6 +9,7 @@ Last Updated: January 26, 2026
 ## 🎯 Quick Summary
 
 This guide covers **all methods** to update your Student Academy Portal to the latest version:
+
 - **Option 1: Zip File Download** (Easiest - Recommended for beginners)
 - **Option 2: Git with GitHub Desktop** (Medium difficulty)
 - **Option 3: Git Command Line** (Advanced)
@@ -20,6 +21,7 @@ Choose the method that best matches your comfort level.
 ## 📋 Prerequisites
 
 Before updating, make sure you have:
+
 - **XAMPP** or **Docker** installed (depending on your setup)
 - Your database backed up (optional but recommended)
 - About 5-10 minutes of free time
@@ -29,6 +31,7 @@ Before updating, make sure you have:
 ## ⚡ OPTION 1: Update Using ZIP File (EASIEST)
 
 ### Best For:
+
 - Complete beginners
 - Quick updates
 - Windows/Mac/Linux users
@@ -36,6 +39,7 @@ Before updating, make sure you have:
 ### Step-by-Step Instructions:
 
 #### 1️⃣ Download the Latest ZIP File
+
 1. Go to: https://github.com/element-bendr/studentsproject
 2. Click the green **"Code"** button
 3. Click **"Download ZIP"**
@@ -45,12 +49,14 @@ Before updating, make sure you have:
 #### 2️⃣ Stop Your Server
 
 **If using XAMPP:**
+
 - Open XAMPP Control Panel
 - Click **"Stop"** for Apache
 - Click **"Stop"** for MySQL
 - Wait 5 seconds
 
 **If using Docker:**
+
 - Open Terminal/Command Prompt
 - Navigate to your project folder
 - Run: `docker compose down`
@@ -74,12 +80,14 @@ Before updating, make sure you have:
 #### 5️⃣ Replace Your Existing Installation
 
 **Option A: Complete Replacement (Cleanest)**
+
 1. Navigate to your project folder (e.g., `C:\xampp\htdocs\`)
 2. Delete the old `studentsproject` folder completely
 3. Paste the extracted `studentsproject-main` folder
 4. Rename `studentsproject-main` to `studentsproject`
 
 **Option B: Selective Update (Keep Custom Files)**
+
 1. Open the extracted `studentsproject-main` folder
 2. Open your existing `studentsproject` folder (in another window)
 3. Copy individual files/folders from new version:
@@ -95,12 +103,14 @@ Before updating, make sure you have:
 #### 6️⃣ Start Your Server
 
 **If using XAMPP:**
+
 - Open XAMPP Control Panel
 - Click **"Start"** for Apache
 - Click **"Start"** for MySQL
 - Wait until both show "Running" in green
 
 **If using Docker:**
+
 - Open Terminal/Command Prompt
 - Navigate to your project folder
 - Run: `docker compose up --build -d`
@@ -119,15 +129,18 @@ Before updating, make sure you have:
 ## 🖥️ OPTION 2: Update Using GitHub Desktop (MEDIUM)
 
 ### Best For:
+
 - Users comfortable with graphical interfaces
 - Those who want easy future updates
 
 ### Prerequisites:
+
 - Download **GitHub Desktop**: https://desktop.github.com/
 
 ### Step-by-Step Instructions:
 
 #### 1️⃣ Install GitHub Desktop
+
 1. Download and install GitHub Desktop
 2. Open the application
 3. Sign in with your GitHub account (if you have one)
@@ -167,11 +180,13 @@ Follow Step 6 and 7 from **OPTION 1** above.
 ## 💻 OPTION 3: Update Using Command Line (ADVANCED)
 
 ### Best For:
+
 - Advanced users
 - Linux/Mac users
 - Those familiar with Git
 
 ### Prerequisites:
+
 - Git installed on your computer
 - Terminal/Command Prompt knowledge
 
@@ -243,6 +258,7 @@ docker compose up --build -d
 ## 📊 What Gets Updated?
 
 ### Files that will be updated:
+
 ✅ All PHP files in `/public/`, `/admin/`, `/student/`
 ✅ All include files in `/includes/`
 ✅ All CSS/JavaScript in `/assets/`
@@ -251,6 +267,7 @@ docker compose up --build -d
 ✅ Database schema (`schema.sql`)
 
 ### Files that should NOT be updated:
+
 ⚠️ `.env` file (your settings)
 ⚠️ `storage/` folder (user uploads)
 ⚠️ `/uploads/` folder (if exists)
@@ -263,31 +280,41 @@ docker compose up --build -d
 ## 🆘 Troubleshooting
 
 ### Problem: "Fatal error: Database connection failed"
+
 **Solution:**
+
 - Check that MySQL is running
 - Verify database credentials in `includes/config.php`
 - Make sure database exists: `student_academy`
 
 ### Problem: "404 Not Found" on admin pages
+
 **Solution:**
+
 - Clear your browser cache (Ctrl+Shift+Delete)
 - Restart Apache/Docker
 - Verify all PHP files were copied correctly
 
 ### Problem: "Cannot read property 'X' of undefined" in console
+
 **Solution:**
+
 - Check that `/assets/js/app.js` was updated
 - Clear browser cache
 - Hard refresh page (Ctrl+F5)
 
 ### Problem: "Login not working after update"
+
 **Solution:**
+
 - Check that `/includes/auth.php` was updated
 - Verify database has admin user: `admin@example.com`
 - Try resetting password by updating database directly
 
 ### Problem: "Old features still showing"
+
 **Solution:**
+
 - Clear browser cache completely
 - Restart your server
 - Check that all files in `/public/` were updated
@@ -313,11 +340,13 @@ After updating, verify everything works:
 ## 🔄 Keeping Your Installation Updated
 
 ### Automatic Checks (Once a Month)
+
 1. Go to: https://github.com/element-bendr/studentsproject
 2. Check if there's a "Compare" indicator
 3. If there are new changes, follow the update steps above
 
 ### Update Frequency
+
 - **Security updates**: Do immediately
 - **Feature updates**: Do within 1 week
 - **Bug fixes**: Do as soon as convenient
@@ -349,6 +378,7 @@ If something goes wrong:
 ### Common Commands
 
 **Docker Users:**
+
 ```bash
 docker compose up --build -d      # Start
 docker compose down               # Stop
@@ -357,11 +387,13 @@ docker compose restart            # Restart
 ```
 
 **XAMPP Users:**
+
 - Start Apache + MySQL via Control Panel
 - Place project in `htdocs/` folder
 - Access via `http://localhost/projectname/public/`
 
 **Git Users:**
+
 ```bash
 git pull origin main              # Update
 git log -1                        # See latest commit
@@ -375,6 +407,7 @@ git status                        # Check status
 **Current Version:** January 26, 2026
 
 ### Recent Updates:
+
 - ✅ Fixed admin login session handling
 - ✅ Added Student Management page (`/admin/users.php`)
 - ✅ Added Add Student page (`/admin/add_student.php`)
