@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/validation.php';
 require_once __DIR__ . '/auth.php';
 session_boot();
 require_admin_auth();
@@ -34,6 +35,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </a>
         <a href="<?= e(BASE_URL) ?>admin/users.php" class="nav-item <?= $current_page === 'users.php' ? 'active' : '' ?>">
           <span class="icon">👥</span> Students
+        </a>
+        <a href="<?= e(BASE_URL) ?>admin/add_student.php" class="nav-item <?= $current_page === 'add_student.php' ? 'active' : '' ?>">
+          <span class="icon">➕</span> Add Student
         </a>
       </div>
       <div class="nav-section">

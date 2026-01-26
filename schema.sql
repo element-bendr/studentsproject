@@ -95,5 +95,10 @@ CREATE TABLE IF NOT EXISTS `enquiries` (
 
 -- Seed default admin (change password immediately in README instructions)
 INSERT INTO `admins` (`full_name`, `email`, `password_hash`) VALUES
-('Default Admin', 'admin@example.com', '$2y$10$3OZg8bQq0Xb5u6bZf1QOzuU7wH4FfS1pCqIY1YFZcQhQvC8b5c5uK');
+('Default Admin', 'admin@example.com', '$2y$10$chAx0OfJiyXC8Ce72Lnd8esayUiOgRc430oPVxcOQe3q7hpb4w2Da');
 -- The above hash corresponds to password: Admin@123 (change after setup)
+
+-- Seed test student
+INSERT INTO `users` (`full_name`, `email`, `phone`, `password_hash`, `status`) VALUES
+('Test Student', 'test.student@example.com', '1234567890', '$2y$10$chAx0OfJiyXC8Ce72Lnd8esayUiOgRc430oPVxcOQe3q7hpb4w2Da', 'active');
+-- The above hash corresponds to password: Admin@123

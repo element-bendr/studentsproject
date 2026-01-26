@@ -23,6 +23,7 @@ docker-compose up --build
 **Done!** Access at http://localhost:8080
 
 ### What Docker Includes:
+
 - ✅ PHP 8.2 + Apache automatically configured
 - ✅ MySQL 8.0 with schema pre-loaded
 - ✅ All dependencies installed
@@ -36,17 +37,20 @@ docker-compose up --build
 ## Alternative Setup (XAMPP)
 
 ### Prerequisites
+
 - XAMPP (Apache + PHP + MySQL) on Windows/macOS/Linux
 - VS Code (optional)
 
 ### Installation Steps
 
 1. Clone this project folder:
+
    ```bash
    git clone https://github.com/element-bendr/studentsproject.git
    ```
 
 2. Move project to XAMPP htdocs:
+
    ```bash
    mv studentsproject C:\xampp\htdocs\  # Windows
    # or
@@ -56,6 +60,7 @@ docker-compose up --build
 3. Start Apache and MySQL in XAMPP Control Panel
 
 4. Create database and import schema:
+
    ```bash
    mysql -u root -p < schema.sql
    ```
@@ -72,9 +77,9 @@ docker-compose up --build
 
 ## 👥 Default Credentials
 
-| Role | Email | Password |
-|------|-------|----------|
-| **Admin** | admin@example.com | Admin@123 |
+| Role        | Email                    | Password  |
+| ----------- | ------------------------ | --------- |
+| **Admin**   | admin@example.com        | Admin@123 |
 | **Student** | test.student@example.com | Admin@123 |
 
 ⚠️ **IMPORTANT:** Change admin password immediately after login at `/admin/change_password.php`
@@ -148,6 +153,7 @@ studentproject/
 ## 🎯 Features
 
 ### Public Website (No Login Required)
+
 - 🏠 **Home Page** - Hero section, features, course preview
 - 📖 **About Page** - School history, achievements, core values
 - 📚 **Courses Page** - Course catalog with filtering
@@ -155,6 +161,7 @@ studentproject/
 - 📅 **Appointment Booking** - Schedule appointments with validation
 
 ### Student Portal (Login Required)
+
 - 👤 **Dashboard** - Profile, attendance stats, recent records, notices
 - 📚 **My Courses** - Enrolled courses with status
 - ✓ **Attendance Tracking** - Personal attendance history and percentage
@@ -162,6 +169,7 @@ studentproject/
 - 📥 **Downloads** - Study materials and lecture notes
 
 ### Admin Panel (Login Required)
+
 - 📊 **Dashboard** - System metrics and quick stats
 - 👥 **Student Management** - View and manage student accounts
 - ✓ **Attendance Manager** - Mark attendance, view reports
@@ -183,7 +191,7 @@ studentproject/
 ✅ **RBAC** - Role-based access control (student/admin)  
 ✅ **File Upload Safety** - Type allowlist, size limits, randomized filenames  
 ✅ **Input Validation** - Server-side validation on all inputs  
-✅ **Error Handling** - No SQL errors shown to users, logged securely  
+✅ **Error Handling** - No SQL errors shown to users, logged securely
 
 See [SECURITY.md](SECURITY.md) for detailed security documentation.
 
@@ -216,13 +224,15 @@ See [SECURITY.md](SECURITY.md) for detailed security documentation.
 ## 🚀 Deployment
 
 ### Docker Deployment (Recommended)
+
 ```bash
 docker-compose up -d
 ```
 
 ### XAMPP Deployment
+
 1. Copy project to `htdocs`
-2. Import `schema.sql` 
+2. Import `schema.sql`
 3. Update `includes/config.php` if needed
 4. Start Apache and MySQL
 
@@ -233,12 +243,15 @@ For production deployment: See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
 ## 🐛 Troubleshooting
 
 ### Docker Issues
+
 See [DOCKER_QUICKSTART.md#troubleshooting](DOCKER_QUICKSTART.md#troubleshooting)
 
 ### XAMPP Issues
+
 See [COMPLETE_DOCUMENTATION.md#troubleshooting](COMPLETE_DOCUMENTATION.md#troubleshooting)
 
 ### Common Problems
+
 - **Port 8080 already in use?** Change in `docker-compose.yml`
 - **Database connection error?** Wait 10 seconds for MySQL to start
 - **Files not updating?** Hard refresh (Ctrl+F5) or clear cache

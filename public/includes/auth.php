@@ -45,7 +45,7 @@ function student_login(string $email, string $password): bool {
             session_regenerate_id(true);
             $_SESSION['student'] = [
                 'id' => (int)$user['id'],
-                'name' => $user['full_name'],
+                'full_name' => $user['full_name'],
                 'email' => $user['email'],
                 'phone' => $user['phone'],
                 'status' => $user['status'],
@@ -76,7 +76,7 @@ function admin_login(string $email, string $password): bool {
             session_regenerate_id(true);
             $_SESSION['admin'] = [
                 'id' => (int)$admin['id'],
-                'name' => $admin['full_name'],
+                'full_name' => $admin['full_name'],
                 'email' => $admin['email'],
                 'created_at' => $admin['created_at']
             ];

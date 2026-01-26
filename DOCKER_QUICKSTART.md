@@ -11,6 +11,7 @@
 Before running the application, you must install **Docker Desktop** for your OS:
 
 #### **Windows**
+
 1. Download: https://www.docker.com/products/docker-desktop
 2. **Requirements:**
    - Windows 10 Pro/Enterprise/Education (or Windows 11)
@@ -29,11 +30,13 @@ Before running the application, you must install **Docker Desktop** for your OS:
    ```
 
 #### **macOS**
+
 1. Download: https://www.docker.com/products/docker-desktop
 2. Install and launch Docker Desktop
 3. Check system tray (top-right) for whale icon
 
 #### **Linux**
+
 ```bash
 # Ubuntu/Debian
 sudo apt-get update
@@ -198,13 +201,15 @@ docker-compose ps
 ### ⚠️ WINDOWS USERS: Docker Desktop Not Running
 
 **Error Message:**
+
 ```
-unable to get image 'studentsproject-web': error during connect: 
-Get "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine": 
+unable to get image 'studentsproject-web': error during connect:
+Get "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine":
 open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified
 ```
 
 **Solution:**
+
 1. **Open Docker Desktop Application**
    - Look for Docker icon in Start Menu
    - Or search "Docker Desktop"
@@ -217,9 +222,11 @@ open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specifie
    - Hover over it - should say "Docker is running"
 
 3. **Test Docker Command:**
+
    ```bash
    docker --version
    ```
+
    - Should show version number (e.g., "Docker version 24.0.0")
    - If it doesn't work, Docker Desktop is not running
 
@@ -233,6 +240,7 @@ open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specifie
 **Error:** `'docker' is not recognized as an internal or external command`
 
 **Solution:**
+
 1. Download Docker Desktop: https://www.docker.com/products/docker-desktop
 2. Run the installer (.exe file)
 3. Follow the installation wizard
@@ -268,6 +276,7 @@ open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specifie
 **Error:** `bind: address already in use`
 
 **Solution:**
+
 1. Find what's using port 8080:
    ```bash
    netstat -ano | findstr :8080
@@ -277,15 +286,16 @@ open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specifie
    - **Change Docker port** in `docker-compose.yml`:
      ```yaml
      ports:
-       - "8081:80"  # Changed from 8080 to 8081
+       - "8081:80" # Changed from 8080 to 8081
      ```
-   Then access: http://localhost:8081
+     Then access: http://localhost:8081
 
 ### Windows: Cannot Delete Docker Container
 
 **Error:** `Error response from daemon: You cannot remove a running container`
 
 **Solution:**
+
 ```bash
 # Stop the container first
 docker-compose down
