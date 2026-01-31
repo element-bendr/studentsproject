@@ -16,7 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!validate_email($email) || !validate_non_empty($password)) {
             $error = 'Please provide valid credentials.';
         } else {
-            if (student_login($email, $password)) {
+            if (too_many_attempts($email, 'student')) {
+                $error = 'Too many login attempts. Close the browser or clear cookies, then try again.';
+            } elseif (student_login($email, $password)) {
                 header('Location: ' . BASE_URL . 'student/dashboard.php');
                 exit;
             } else {

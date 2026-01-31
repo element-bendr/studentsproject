@@ -17,13 +17,13 @@ $isAdmin = !empty($_SESSION['admin']);
 <body>
   <header class="site-header">
     <nav class="navbar">
-      <a class="brand" href="<?= e(BASE_URL) ?>public/index.php"><?= e(APP_NAME) ?></a>
+      <a class="brand" href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>index.php"><?= e(APP_NAME) ?></a>
       <ul class="nav-links">
-        <li><a href="<?= e(BASE_URL) ?>public/index.php">Home</a></li>
-        <li><a href="<?= e(BASE_URL) ?>public/about.php">About</a></li>
-        <li><a href="<?= e(BASE_URL) ?>public/courses.php">Courses</a></li>
-        <li><a href="<?= e(BASE_URL) ?>public/contact.php">Contact</a></li>
-        <li><a href="<?= e(BASE_URL) ?>public/book_appointment.php">Appointments</a></li>
+          <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>index.php">Home</a></li>
+          <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>about.php">About</a></li>
+          <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>courses.php">Courses</a></li>
+          <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>contact.php">Contact</a></li>
+          <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>book_appointment.php">Appointments</a></li>
         <?php if ($isStudent): ?>
           <li><a href="<?= e(BASE_URL) ?>student/dashboard.php">Student Dashboard</a></li>
           <li><a href="<?= e(BASE_URL) ?>student/logout.php">Logout</a></li>

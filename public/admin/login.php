@@ -16,7 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!validate_email($email) || !validate_non_empty($password)) {
             $error = 'Please provide valid credentials.';
         } else {
-            if (admin_login($email, $password)) {
+            if (too_many_attempts($email, 'admin')) {
+                $error = 'Too many login attempts. Close the browser or clear cookies, then try again.';
+            } elseif (admin_login($email, $password)) {
                 header('Location: ' . BASE_URL . 'admin/dashboard.php');
                 exit;
             } else {

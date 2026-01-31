@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
@@ -7,6 +6,8 @@ require_once __DIR__ . '/../includes/csrf.php';
 
 require_student_auth();
 $student = $_SESSION['student'];
+
+require_once __DIR__ . '/../includes/header.php';
 
 $activeCount = 0;
 $attendance = [];
@@ -42,7 +43,7 @@ try {
 <section class="cards">
   <div class="card">
     <h2>My Details</h2>
-    <p><strong>Name:</strong> <?= e($student['name']) ?></p>
+    <p><strong>Name:</strong> <?= e($student['full_name']) ?></p>
     <p><strong>Email:</strong> <?= e($student['email']) ?></p>
     <p><strong>Phone:</strong> <?= e($student['phone'] ?? '') ?></p>
     <p><strong>Joined:</strong> <?= e($student['created_at']) ?></p>
