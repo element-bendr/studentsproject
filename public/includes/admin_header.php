@@ -21,51 +21,51 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <body class="portal-layout">
   <aside class="sidebar admin-sidebar">
     <div class="sidebar-brand">
-      <a href="<?= e(BASE_URL) ?>admin/dashboard.php"><?= e(APP_NAME) ?></a>
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/dashboard.php"><?= e(APP_NAME) ?></a>
       <span class="role-badge admin">Admin</span>
     </div>
     <nav class="sidebar-nav">
-      <a href="<?= e(BASE_URL) ?>admin/dashboard.php" class="nav-item <?= $current_page === 'dashboard.php' ? 'active' : '' ?>">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/dashboard.php" class="nav-item <?= $current_page === 'dashboard.php' ? 'active' : '' ?>">
         <span class="icon">📊</span> Dashboard
       </a>
       <div class="nav-section">
         <p class="nav-label">Management</p>
-        <a href="<?= e(BASE_URL) ?>admin/attendance.php" class="nav-item <?= $current_page === 'attendance.php' ? 'active' : '' ?>">
+          <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/attendance.php" class="nav-item <?= $current_page === 'attendance.php' ? 'active' : '' ?>">
           <span class="icon">✓</span> Attendance
         </a>
-        <a href="<?= e(BASE_URL) ?>admin/users.php" class="nav-item <?= $current_page === 'users.php' ? 'active' : '' ?>">
+          <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/users.php" class="nav-item <?= $current_page === 'users.php' ? 'active' : '' ?>">
           <span class="icon">👥</span> Students
         </a>
-        <a href="<?= e(BASE_URL) ?>admin/add_student.php" class="nav-item <?= $current_page === 'add_student.php' ? 'active' : '' ?>">
+          <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/add_student.php" class="nav-item <?= $current_page === 'add_student.php' ? 'active' : '' ?>">
           <span class="icon">➕</span> Add Student
         </a>
       </div>
       <div class="nav-section">
         <p class="nav-label">Content</p>
-        <a href="<?= e(BASE_URL) ?>admin/uploads.php" class="nav-item <?= $current_page === 'uploads.php' ? 'active' : '' ?>">
+          <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/uploads.php" class="nav-item <?= $current_page === 'uploads.php' ? 'active' : '' ?>">
           <span class="icon">📁</span> Upload Notes & Photos
         </a>
-        <a href="<?= e(BASE_URL) ?>admin/notices.php" class="nav-item <?= $current_page === 'notices.php' ? 'active' : '' ?>">
+          <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/notices.php" class="nav-item <?= $current_page === 'notices.php' ? 'active' : '' ?>">
           <span class="icon">📢</span> Notices
         </a>
       </div>
       <div class="nav-section">
         <p class="nav-label">Requests</p>
-        <a href="<?= e(BASE_URL) ?>admin/appointments.php" class="nav-item <?= $current_page === 'appointments.php' ? 'active' : '' ?>">
+          <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/appointments.php" class="nav-item <?= $current_page === 'appointments.php' ? 'active' : '' ?>">
           <span class="icon">📅</span> Appointments
         </a>
-        <a href="<?= e(BASE_URL) ?>admin/enquiries.php" class="nav-item <?= $current_page === 'enquiries.php' ? 'active' : '' ?>">
+          <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/enquiries.php" class="nav-item <?= $current_page === 'enquiries.php' ? 'active' : '' ?>">
           <span class="icon">💬</span> Enquiries
         </a>
       </div>
       <hr class="sidebar-divider">
-      <a href="<?= e(BASE_URL) ?>admin/change_password.php" class="nav-item <?= $current_page === 'change_password.php' ? 'active' : '' ?>">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/change_password.php" class="nav-item <?= $current_page === 'change_password.php' ? 'active' : '' ?>">
         <span class="icon">🔐</span> Change Password
       </a>
-      <a href="<?= e(BASE_URL) ?>public/index.php" class="nav-item">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>index.html" class="nav-item">
         <span class="icon">🏠</span> Home
       </a>
-      <a href="<?= e(BASE_URL) ?>admin/logout.php" class="nav-item logout">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>admin/logout.php" class="nav-item logout">
         <span class="icon">🚪</span> Logout
       </a>
     </nav>

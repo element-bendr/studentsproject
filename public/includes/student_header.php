@@ -20,30 +20,30 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <body class="portal-layout">
   <aside class="sidebar student-sidebar">
     <div class="sidebar-brand">
-      <a href="<?= e(BASE_URL) ?>student/dashboard.php"><?= e(APP_NAME) ?></a>
+      <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>student/dashboard.php"><?= e(APP_NAME) ?></a>
       <span class="role-badge">Student</span>
     </div>
-    <nav class="sidebar-nav">
-      <a href="<?= e(BASE_URL) ?>student/dashboard.php" class="nav-item <?= $current_page === 'dashboard.php' ? 'active' : '' ?>">
+      <nav class="sidebar-nav">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>student/dashboard.php" class="nav-item <?= $current_page === 'dashboard.php' ? 'active' : '' ?>">
         <span class="icon">📊</span> Dashboard
       </a>
-      <a href="<?= e(BASE_URL) ?>student/courses.php" class="nav-item <?= $current_page === 'courses.php' ? 'active' : '' ?>">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>student-courses.php" class="nav-item <?= $current_page === 'student-courses.php' ? 'active' : '' ?>">
         <span class="icon">📚</span> My Courses
       </a>
-      <a href="<?= e(BASE_URL) ?>student/attendance.php" class="nav-item <?= $current_page === 'attendance.php' ? 'active' : '' ?>">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>student-attendance.php" class="nav-item <?= $current_page === 'student-attendance.php' ? 'active' : '' ?>">
         <span class="icon">✓</span> Attendance
       </a>
-      <a href="<?= e(BASE_URL) ?>student/schedule.php" class="nav-item <?= $current_page === 'schedule.php' ? 'active' : '' ?>">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>student-schedule.php" class="nav-item <?= $current_page === 'student-schedule.php' ? 'active' : '' ?>">
         <span class="icon">📅</span> Schedule
       </a>
-      <a href="<?= e(BASE_URL) ?>student/downloads.php" class="nav-item <?= $current_page === 'downloads.php' ? 'active' : '' ?>">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>student/download.php" class="nav-item <?= $current_page === 'download.php' ? 'active' : '' ?>">
         <span class="icon">⬇️</span> Downloads
       </a>
       <hr class="sidebar-divider">
-      <a href="<?= e(BASE_URL) ?>public/index.php" class="nav-item">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>index.html" class="nav-item">
         <span class="icon">🏠</span> Home
       </a>
-      <a href="<?= e(BASE_URL) ?>student/logout.php" class="nav-item logout">
+        <a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>student/logout.php" class="nav-item logout">
         <span class="icon">🚪</span> Logout
       </a>
     </nav>
