@@ -14,6 +14,7 @@ $attendance = [];
 $attendancePct = 0;
 $uploads = [];
 $notices = [];
+$myEnquiries = [];
 
 try {
     $pdo = get_db_connection();
@@ -33,6 +34,10 @@ try {
 
     $uploads = $pdo->query("SELECT id, title, type, filename, mime_type, size, created_at FROM uploads ORDER BY created_at DESC LIMIT 50")->fetchAll();
     $notices = $pdo->query("SELECT title, body, created_at FROM notices WHERE visible_to_students = 1 ORDER BY created_at DESC LIMIT 10")->fetchAll();
+
+    $stmtEnq = $pdo->prepare('SELECT message, created_at FROM enquiries WHERE student_id = ? ORDER BY created_at DESC LIMIT 20');
+    $stmtEnq->execute([$student['id']]);
+    $myEnquiries = $stmtEnq->fetchAll();
 } catch (Throwable $e) {
     log_error('Dashboard load error: ' . $e->getMessage());
 }
@@ -97,6 +102,25 @@ try {
         </div>
       <?php endforeach; ?>
     </div>
+  <?php endif; ?>
+</section>
+
+<section>
+  <h2>My Enquiries</h2>
+  <?php if (!$myEnquiries): ?>
+    <p>You have not submitted any enquiries yet. <a href="/contact.php">Contact us</a> if you have questions.</p>
+  <?php else: ?>
+    <table class="table">
+      <thead><tr><th>Message</th><th>Submitted</th></tr></thead>
+      <tbody>
+        <?php foreach ($myEnquiries as $eq): ?>
+          <tr>
+            <td><?= e($eq['message']) ?></td>
+            <td><?= e($eq['created_at']) ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
   <?php endif; ?>
 </section>
 

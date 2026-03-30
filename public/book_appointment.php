@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pdo = get_db_connection();
                 $stmt = $pdo->prepare('INSERT INTO appointments (name, email, phone, preferred_date, preferred_time, reason, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())');
                 $stmt->execute([$name, $email, $phone, $date, $time, $reason]);
-                $success = 'Your appointment request has been submitted.';
+                $success = 'Thank you for reaching out! Your appointment request has been received. Further details will be furnished on your registered email address within 24 hours.';
             } catch (Throwable $e) {
                 log_error('Appointment form error: ' . $e->getMessage());
                 $errors[] = 'Could not submit your request. Please try again later.';

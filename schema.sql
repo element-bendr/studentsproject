@@ -85,12 +85,15 @@ CREATE TABLE IF NOT EXISTS `appointments` (
 -- Enquiries (contact form)
 CREATE TABLE IF NOT EXISTS `enquiries` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `student_id` INT UNSIGNED DEFAULT NULL,
   `name` VARCHAR(100) NOT NULL,
   `email` VARCHAR(150) NOT NULL,
   `message` TEXT NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `idx_enquiries_email` (`email`)
+  KEY `idx_enquiries_email` (`email`),
+  KEY `idx_enquiries_student` (`student_id`),
+  CONSTRAINT `fk_enquiries_student` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 -- Seed default admin (change password immediately in README instructions)

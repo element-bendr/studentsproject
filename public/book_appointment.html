@@ -244,5 +244,76 @@
   </footer>
 
   <script src="/assets/js/main.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var form = document.getElementById('appointmentForm');
+    if (!form) return;
+
+    // Inject a hidden CSRF token field fetched from the PHP session endpoint
+    fetch('/csrf-token.php', { credentials: 'same-origin' })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var input = document.createElement('input');
+        input.type  = 'hidden';
+        input.name  = 'csrf_token';
+        input.value = data.token;
+        form.appendChild(input);
+      })
+      .catch(function () {
+        console.warn('Could not fetch CSRF token. Form submission may fail.');
+      });
+
+    // Show inline success / error message after AJAX submission
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+
+      var formData = new FormData(form);
+      fetch('book_appointment.php', { method: 'POST', body: formData, credentials: 'same-origin' })
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+          var success = doc.querySelector('.alert.success');
+          var error   = doc.querySelector('.alert.error');
+          var msgBox  = document.getElementById('form-feedback');
+          if (!msgBox) {
+            msgBox = document.createElement('div');
+            msgBox.id = 'form-feedback';
+            form.parentNode.insertBefore(msgBox, form);
+          }
+          if (success) {
+            msgBox.className = 'alert success';
+            msgBox.innerHTML = success.innerHTML;
+            form.reset();
+            fetch('/csrf-token.php', { credentials: 'same-origin' })
+              .then(function (r) { return r.json(); })
+              .then(function (d) {
+                var tok = form.querySelector('[name="csrf_token"]');
+                if (tok) tok.value = d.token;
+              });
+          } else if (error) {
+            msgBox.className = 'alert error';
+            msgBox.innerHTML = error.innerHTML;
+          } else {
+            msgBox.className = 'alert alert-error';
+            msgBox.textContent = 'Unexpected response. Please try again.';
+          }
+          btn.disabled = false;
+          btn.textContent = original;
+          msgBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = original;
+          alert('Network error. Please check your connection and try again.');
+        });
+    });
+  }());
+  </script>
 </body>
 </html>

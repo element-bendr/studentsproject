@@ -19,11 +19,11 @@ $isAdmin = !empty($_SESSION['admin']);
     <nav class="navbar">
       <a class="brand" href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>index.php"><?= e(APP_NAME) ?></a>
       <ul class="nav-links">
-        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>index.php">Home</a></li>
-        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>about.php">About</a></li>
-        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>courses.php">Courses</a></li>
-        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>contact.php">Contact</a></li>
-        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>book_appointment.php">Appointments</a></li>
+        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>index.html">Home</a></li>
+        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>about.html">About</a></li>
+        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>courses.html">Courses</a></li>
+        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>contact.html">Contact</a></li>
+        <li><a href="<?= e(BASE_URL . PUBLIC_URL_PREFIX) ?>book_appointment.html">Appointments</a></li>
         <?php if ($isStudent): ?>
           <li><a href="<?= e(BASE_URL) ?>student/dashboard.php">Student Dashboard</a></li>
           <li><a href="<?= e(BASE_URL) ?>student/logout.php">Logout</a></li>

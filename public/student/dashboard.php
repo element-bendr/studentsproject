@@ -11,6 +11,7 @@ $attendance = [];
 $attendancePct = 0;
 $uploads = [];
 $notices = [];
+$myEnquiries = [];
 
 try {
     $pdo = get_db_connection();
@@ -30,6 +31,9 @@ try {
 
     $uploads = $pdo->query("SELECT id, title, type, filename, mime_type, size, created_at FROM uploads ORDER BY created_at DESC LIMIT 50")->fetchAll();
     $notices = $pdo->query("SELECT title, body, created_at FROM notices WHERE visible_to_students = 1 ORDER BY created_at DESC LIMIT 10")->fetchAll();
+    $stmtEnq = $pdo->prepare('SELECT message, created_at FROM enquiries WHERE student_id = ? ORDER BY created_at DESC LIMIT 20');
+    $stmtEnq->execute([$student['id']]);
+    $myEnquiries = $stmtEnq->fetchAll();
 } catch (Throwable $e) {
     log_error('Dashboard load error: ' . $e->getMessage());
 }
@@ -135,6 +139,25 @@ try {
   <?php endif; ?>
 </section>
 
+<section class="card">
+  <h2>&#9993; My Enquiries</h2>
+  <?php if ($myEnquiries): ?>
+    <table class="table">
+      <thead><tr><th>Message</th><th>Submitted</th></tr></thead>
+      <tbody>
+        <?php foreach ($myEnquiries as $eq): ?>
+          <tr>
+            <td><?= e($eq['message']) ?></td>
+            <td><?= e(date('M d, Y', strtotime($eq['created_at']))) ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php else: ?>
+    <p style="color: #6B7280; text-align: center; padding: var(--spacing-2xl);">No enquiries submitted yet. <a href="/contact.html">Contact us</a> if you have questions.</p>
+  <?php endif; ?>
+</section>
+
 </main>
 <script>
   // Set page title
@@ -145,27 +168,5 @@ try {
     document.querySelector('.sidebar-nav').classList.toggle('active');
   });
 </script>
-
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>
-    </tbody>
-  </table>
-</section>
-
-<section>
-  <h2>Notices</h2>
-  <?php if (!$notices): ?>
-    <p>No notices at the moment.</p>
-  <?php else: ?>
-    <div class="cards">
-      <?php foreach ($notices as $n): ?>
-        <div class="card">
-          <h3><?= e($n['title']) ?></h3>
-          <p><?= e($n['body']) ?></p>
-          <p class="muted">Posted: <?= e($n['created_at']) ?></p>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  <?php endif; ?>
-</section>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
