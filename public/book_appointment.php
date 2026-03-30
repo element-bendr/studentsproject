@@ -18,10 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $time = sanitize_string($_POST['preferred_time'] ?? '');
         $reason = sanitize_string($_POST['reason'] ?? '');
 
+        // Normalize DD/MM/YYYY → YYYY-MM-DD before validation
+        if (preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $date)) {
+            $parts = explode('/', $date);
+            $date = $parts[2] . '-' . $parts[1] . '-' . $parts[0];
+        }
+
         if (!validate_non_empty($name, 2, 100)) $errors[] = 'Name is required (2-100 chars).';
         if (!validate_email($email)) $errors[] = 'Valid email is required.';
         if ($phone && !validate_non_empty($phone, 7, 20)) $errors[] = 'Phone must be 7-20 characters if provided.';
-        if (!validate_date($date, true)) $errors[] = 'Preferred date must be in YYYY-MM-DD format and be a future date.';
+        if (!validate_date($date, true)) $errors[] = 'Preferred date must be in DD/MM/YYYY format and be a future date.';
         if (!validate_time($time)) $errors[] = 'Preferred time must be in HH:MM format (00:00-23:59).';
         if (!validate_non_empty($reason, 5, 1000)) $errors[] = 'Reason must be 5-1000 characters.';
 
@@ -56,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" name="phone">
   </label>
   <label>Preferred Date
-    <input type="date" name="preferred_date" required>
+    <input type="text" name="preferred_date" placeholder="DD/MM/YYYY" pattern="\d{2}/\d{2}/\d{4}" maxlength="10" required>
   </label>
   <label>Preferred Time
     <input type="time" name="preferred_time" required>

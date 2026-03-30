@@ -93,12 +93,17 @@
               <div class="form-group">
                 <label for="app-date">Preferred Date *</label>
                 <input 
-                  type="date" 
+                  type="text" 
                   id="app-date" 
-                  name="preferred_date" 
+                  name="preferred_date_display" 
+                  placeholder="DD/MM/YYYY"
+                  pattern="\d{2}/\d{2}/\d{4}"
+                  maxlength="10"
+                  autocomplete="off"
                   required
                 >
-                <small class="form-hint">Select a date (next 30 days)</small>
+                <input type="hidden" id="app-date-iso" name="preferred_date">
+                <small class="form-hint">Enter date as DD/MM/YYYY (e.g. 10/04/2026)</small>
               </div>
 
               <div class="form-group">
@@ -109,7 +114,7 @@
                   name="preferred_time" 
                   required
                 >
-                <small class="form-hint">9:00 AM - 5:00 PM</small>
+                <small class="form-hint">9:00 AM – 5:00 PM (IST)</small>
               </div>
             </div>
 
@@ -150,9 +155,9 @@
           <div class="appointment-hours">
             <h4>Available Hours</h4>
             <p>
-              <strong>Monday - Friday:</strong> 9:00 AM - 5:00 PM<br>
-              <strong>Saturday:</strong> 10:00 AM - 2:00 PM<br>
-              <em>All times in your local timezone</em>
+              <strong>Monday – Friday:</strong> 9:00 AM – 5:00 PM IST<br>
+              <strong>Saturday:</strong> 10:00 AM – 2:00 PM IST<br>
+              <em>All times in Indian Standard Time (IST, UTC+5:30)</em>
             </p>
           </div>
 
@@ -248,6 +253,17 @@
   (function () {
     'use strict';
     var form = document.getElementById('appointmentForm');
+
+    // Auto-format DD/MM/YYYY as user types
+    var dateInput = document.getElementById('app-date');
+    if (dateInput) {
+      dateInput.addEventListener('input', function () {
+        var v = this.value.replace(/\D/g, '').substring(0, 8);
+        if (v.length > 4) v = v.substring(0, 2) + '/' + v.substring(2, 4) + '/' + v.substring(4);
+        else if (v.length > 2) v = v.substring(0, 2) + '/' + v.substring(2);
+        this.value = v;
+      });
+    }
     if (!form) return;
 
     // Inject a hidden CSRF token field fetched from the PHP session endpoint
@@ -271,6 +287,21 @@
       var original = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Submitting…';
+
+      // Convert DD/MM/YYYY → YYYY-MM-DD for the backend
+      var dateDisplay = document.getElementById('app-date').value.trim();
+      var dateIsoField = document.getElementById('app-date-iso');
+      if (!dateDisplay || !/^\d{2}\/\d{2}\/\d{4}$/.test(dateDisplay)) {
+        var msgBox = document.getElementById('form-feedback');
+        if (!msgBox) { msgBox = document.createElement('div'); msgBox.id = 'form-feedback'; form.parentNode.insertBefore(msgBox, form); }
+        msgBox.className = 'alert error';
+        msgBox.innerHTML = '<p>Please enter the date in DD/MM/YYYY format (e.g. 10/04/2026).</p>';
+        btn.disabled = false; btn.textContent = original;
+        msgBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+      var dp = dateDisplay.split('/');
+      dateIsoField.value = dp[2] + '-' + dp[1] + '-' + dp[0];
 
       var formData = new FormData(form);
       fetch('book_appointment.php', { method: 'POST', body: formData, credentials: 'same-origin' })

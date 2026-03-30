@@ -38,7 +38,7 @@ try {
         <td><?= e($r['name']) ?></td>
         <td><?= e($r['email']) ?></td>
         <td><?= e($r['phone']) ?></td>
-        <td><?= e($r['preferred_date']) ?></td>
+          <td><?= e(date('d/m/Y', strtotime($r['preferred_date']))) ?></td>
         <td><?= e($r['preferred_time']) ?></td>
         <td><?= e($r['reason']) ?></td>
         <td><?= e($r['created_at']) ?></td>

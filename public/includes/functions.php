@@ -33,16 +33,24 @@ function escape_like(string $value): string {
 }
 
 function validate_date(string $date, bool $require_future = false): bool {
-    // Validate date format (YYYY-MM-DD) and optionally check it's in future
+    // Accept DD/MM/YYYY and normalise to YYYY-MM-DD
+    if (preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $date)) {
+        $parts = explode('/', $date);
+        $date = $parts[2] . '-' . $parts[1] . '-' . $parts[0];
+    }
     if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
         return false;
     }
-    $timestamp = strtotime($date);
-    if ($timestamp === false) {
+    $tz = new DateTimeZone('Asia/Kolkata');
+    $dt = DateTime::createFromFormat('Y-m-d', $date, $tz);
+    if (!$dt || $dt->format('Y-m-d') !== $date) {
         return false;
     }
-    if ($require_future && $timestamp < strtotime('today')) {
-        return false;
+    if ($require_future) {
+        $today = new DateTime('today', $tz);
+        if ($dt < $today) {
+            return false;
+        }
     }
     return true;
 }

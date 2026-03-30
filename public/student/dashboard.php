@@ -31,6 +31,7 @@ try {
 
     $uploads = $pdo->query("SELECT id, title, type, filename, mime_type, size, created_at FROM uploads ORDER BY created_at DESC LIMIT 50")->fetchAll();
     $notices = $pdo->query("SELECT title, body, created_at FROM notices WHERE visible_to_students = 1 ORDER BY created_at DESC LIMIT 10")->fetchAll();
+
     $stmtEnq = $pdo->prepare('SELECT message, created_at FROM enquiries WHERE student_id = ? ORDER BY created_at DESC LIMIT 20');
     $stmtEnq->execute([$student['id']]);
     $myEnquiries = $stmtEnq->fetchAll();
@@ -88,7 +89,7 @@ try {
   <?php endif; ?>
 </section>
 
-<section class="card" style="margin-bottom: var(--spacing-2xl);">
+<section id="study-materials" class="card" style="margin-bottom: var(--spacing-2xl);">
   <h2>📚 Study Materials</h2>
   <?php if ($uploads): ?>
     <table class="table">
@@ -140,7 +141,7 @@ try {
 </section>
 
 <section class="card">
-  <h2>&#9993; My Enquiries</h2>
+  <h2>✉️ My Enquiries</h2>
   <?php if ($myEnquiries): ?>
     <table class="table">
       <thead><tr><th>Message</th><th>Submitted</th></tr></thead>
@@ -154,7 +155,7 @@ try {
       </tbody>
     </table>
   <?php else: ?>
-    <p style="color: #6B7280; text-align: center; padding: var(--spacing-2xl);">No enquiries submitted yet. <a href="/contact.html">Contact us</a> if you have questions.</p>
+    <p style="color: #6B7280; text-align: center; padding: var(--spacing-2xl);">No enquiries submitted yet. <a href="/contact.php">Contact us</a> if you have questions.</p>
   <?php endif; ?>
 </section>
 
