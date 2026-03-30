@@ -10,20 +10,24 @@ Pull the latest changes from GitHub and run the project with Docker.
 # 1. Go into the project folder
 cd studentsproject
 
-# 2. Save any local changes you've made (optional but safe)
+# 2. Make sure the remote is set (only need to do this once)
+git remote add origin https://github.com/element-bendr/studentsproject.git
+# If you get "remote origin already exists", skip the line above
+
+# 3. Save any local changes you've made (optional but safe)
 git stash
 
-# 3. Pull the latest changes
+# 4. Pull the latest changes
 git pull origin main
 
-# 4. Restore your local changes on top (skip if you didn't stash)
+# 5. Restore your local changes on top (skip if you didn't stash)
 git stash pop
 
-# 5. Rebuild and start the containers
+# 6. Rebuild and start the containers
 docker compose down
 docker compose up -d --build
 
-# 6. Open in browser
+# 7. Open in browser
 # http://localhost:8080
 ```
 
@@ -66,7 +70,7 @@ docker compose down -v
 
 ## Default login credentials
 
-| Role    | Email                         | Password   |
-|---------|-------------------------------|------------|
-| Admin   | admin@example.com             | *(set on first login)* |
-| Student | *(register at /student/register.php)* | *(your password)* |
+| Role    | Email                                 | Password               |
+| ------- | ------------------------------------- | ---------------------- |
+| Admin   | admin@example.com                     | _(set on first login)_ |
+| Student | _(register at /student/register.php)_ | _(your password)_      |
